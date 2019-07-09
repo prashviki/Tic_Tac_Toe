@@ -20,6 +20,8 @@ def display_board():
 
 def start():
     _ = ""
+    print()
+    print(current_player + "'s turn:")
     _ = input('enter the no (1 - 9) : ')
 
     _ = int(_)
@@ -28,11 +30,20 @@ def start():
         if board[_] == '-':
             board[_] = current_player
             display_board()
+            handle_player()
         else:
             print("u can't go there")
     else:
         print('wrong input')
     start()
+
+
+def handle_player():
+    global current_player
+    if current_player == 'x':
+        current_player = '0'
+    elif current_player == '0':
+        current_player = 'x'
 
 
 def play():
