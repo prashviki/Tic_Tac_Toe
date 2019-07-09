@@ -42,6 +42,7 @@ def start():
 def check_status():
     check_rows()
     check_columns()
+    check_diagonals()
 
 
 def check_rows():
@@ -59,6 +60,13 @@ def check_columns():
     if board[1] == board[4] == board[7] != '-':
         print(board[1] + " won")
     if board[2] == board[5] == board[8] != '-':
+        print(board[2] + " won")
+
+
+def check_diagonals():
+    if board[0] == board[4] == board[8] != '-':
+        print(board[0] + " won")
+    if board[2] == board[4] == board[6] != '-':
         print(board[2] + " won")
 
 
