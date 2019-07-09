@@ -43,6 +43,7 @@ def check_status():
     check_rows()
     check_columns()
     check_diagonals()
+    check_tie()
 
 
 def check_rows():
@@ -68,6 +69,11 @@ def check_diagonals():
         print(board[0] + " won")
     if board[2] == board[4] == board[6] != '-':
         print(board[2] + " won")
+
+
+def check_tie():
+    if '-' not in board:
+        print('tie')
 
 
 def handle_player():
