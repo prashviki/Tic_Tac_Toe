@@ -19,6 +19,7 @@ def display_board():
 
 
 def start():
+    check_status()
     _ = ""
     print()
     print(current_player + "'s turn:")
@@ -36,6 +37,10 @@ def start():
     else:
         print('wrong input')
     start()
+
+
+def check_status():
+    pass
 
 
 def handle_player():
