@@ -24,19 +24,22 @@ def start():
     print()
     print(current_player + "'s turn:")
     _ = input('enter the no (1 - 9) : ')
-
-    _ = int(_)
-    _ = _ - 1
-    if _ in range(0, 9):
-        if board[_] == '-':
-            board[_] = current_player
-            display_board()
-            handle_player()
+    try:
+        _ = int(_)
+        _ = _ - 1
+        if _ in range(0, 9):
+            if board[_] == '-':
+                board[_] = current_player
+                display_board()
+                handle_player()
+            else:
+                print("u can't go there")
         else:
-            print("u can't go there")
-    else:
-        print('wrong input')
-    start()
+            print('wrong input')
+        start()
+    except Exception:
+        print("invalid input")
+        start()
 
 
 def check_status():
@@ -98,20 +101,24 @@ def replay():
     print("1) to replay")
     print("0) to exit")
     rep = input("enter u r choice :")
-    if rep == '1':
-        print()
-        print('-----------------')
-        print()
-        global board
-        board = ['-', '-', '-',
-                 '-', '-', '-',
-                 '-', '-', '-']
-        display_board()
-        start()
-    elif rep == '0':
-        print('have a nice day')
-        exit()
-    else:
+    try:
+        if rep == '1':
+            print()
+            print('-----------------')
+            print()
+            global board
+            board = ['-', '-', '-',
+                     '-', '-', '-',
+                     '-', '-', '-']
+            display_board()
+            start()
+        elif rep == '0':
+            print('have a nice day')
+            exit()
+        else:
+            print("invalid input")
+            replay()
+    except Exception:
         print("invalid input")
         replay()
 
