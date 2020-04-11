@@ -1,15 +1,16 @@
 import 'dart:io';
 
+// create board
 var board = ['_', '_', '_', '_', '_', '_', '_', '_', '_'];
 
-String player = "x";
+String current_player = "x";
 
+// welcome
 welcome() {
-  print("hello world !");
-  print("welcome to the game ");
-  print('');
+  print("welcome to dumbAss Tic Tac Toe");
 }
 
+// display board
 disp_board() {
   print("${board[0]} | ${board[1]} | ${board[2]}");
   print("${board[3]} | ${board[4]} | ${board[5]}");
@@ -17,10 +18,10 @@ disp_board() {
 }
 
 handl_player() {
-  if (player == "x") {
-    player = "O";
+  if (current_player == "x") {
+    current_player = "O";
   } else {
-    player = "x";
+    current_player = "x";
   }
 }
 
@@ -47,7 +48,7 @@ menu() {
 
 reset_game() {
   board = ['_', '_', '_', '_', '_', '_', '_', '_', '_'];
-  player = 'x';
+  current_player = 'x';
 }
 
 congrts(p) {
@@ -56,7 +57,7 @@ congrts(p) {
   menu();
 }
 
-play() {
+start() {
   if (board[0] == "_" ||
       board[1] == "_" ||
       board[2] == "_" ||
@@ -67,10 +68,10 @@ play() {
       board[7] == "_" ||
       board[8] == "_") {
     print("enter the number from (1 - 9)");
-    stdout.write("$player  turn > ");
+    stdout.write("$current_player  turn > ");
     int i = int.parse(stdin.readLineSync());
     if (board[i - 1] == '_') {
-      board[i - 1] = player;
+      board[i - 1] = current_player;
       handl_player();
     } else {
       print("already filled");
@@ -85,7 +86,7 @@ play() {
   }
   disp_board();
   check_win();
-  play();
+  start();
 }
 
 // check win
@@ -139,5 +140,5 @@ check_win() {
 main() {
   welcome();
   disp_board();
-  play();
+  start();
 }
