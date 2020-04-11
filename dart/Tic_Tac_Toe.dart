@@ -24,6 +24,38 @@ handl_player() {
   }
 }
 
+
+gameOver() {
+  menu();
+}
+
+menu() {
+  quit() {
+    print("thanks for playing");
+    exit(0);
+  }
+  print("'r' to restart");
+  print("'q' for quit");
+  var i = stdin.readLineSync();
+  if (i == 'r') {
+    reset_game();
+    main();
+  } else if (i == 'q') {
+    quit();
+  }
+}
+
+reset_game() {
+  board = ['_', '_', '_', '_', '_', '_', '_', '_', '_'];
+  player = 'x';
+}
+
+congrts(p) {
+  print("$p won");
+  print('🎉🎉🎉');
+  menu();
+}
+
 play() {
   if (board[0] == "_" ||
       board[1] == "_" ||
@@ -48,16 +80,8 @@ play() {
     for (int i = 0; i <= 10; i++) {
       print(".");
     }
-    board = ['_', '_', '_', '_', '_', '_', '_', '_', '_'];
-    print("'r' to restart");
-    print("'q' for quit");
-    var i = stdin.readLineSync();
-    if (i == 'r') {
-      main();
-    } else if (i == 'q') {
-      print("thanks for playing");
-      exit(0);
-    }
+    reset_game();
+    menu();
   }
   disp_board();
   check_win();
@@ -66,15 +90,44 @@ play() {
 
 // check win
 c_rows() {
-  print('checking rows for win');
+  if (((board[0] == board[1]) && (board[1] == board[2])) && (board[0] != '_')) {
+    congrts(board[0]);
+    exit(0);
+  } else if (((board[3] == board[4]) && (board[4] == board[5])) &&
+      (board[3] != '_')) {
+    congrts(board[3]);
+    exit(0);
+  } else if (((board[6] == board[7]) && (board[7] == board[8])) &&
+      (board[6] != '_')) {
+    congrts(board[6]);
+    exit(0);
+  }
 }
 
 c_columns() {
-  print('checking columns for win');
+  if (((board[0] == board[3]) && (board[3] == board[6])) && (board[0] != '_')) {
+    congrts(board[0]);
+    exit(0);
+  } else if (((board[1] == board[4]) && (board[4] == board[7])) &&
+      (board[1] != '_')) {
+    congrts(board[1]);
+    exit(0);
+  } else if (((board[2] == board[5]) && (board[5] == board[8])) &&
+      (board[2] != '_')) {
+    congrts(board[2]);
+    exit(0);
+  }
 }
 
 c_diagonal() {
-  print('checking diagonals for win');
+  if (((board[0] == board[4]) && (board[4] == board[8])) && (board[0] != '_')) {
+    congrts(board[0]);
+    exit(0);
+  } else if (((board[2] == board[4]) && (board[4] == board[6])) &&
+      (board[2] != '_')) {
+    congrts(board[2]);
+    exit(0);
+  }
 }
 
 check_win() {
