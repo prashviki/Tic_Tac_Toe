@@ -123,10 +123,10 @@ def replay():
         replay()
 
 
-def play():
+def main():
     welcome()
     display_board()
     start()
 
 
-play()
+main()
